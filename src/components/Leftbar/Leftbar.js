@@ -28,7 +28,7 @@ const Leftbar = () => {
                     <NavLink to="/calender"><AiTwotoneCalendar color='#000'/><p>Calender</p></NavLink>
                 </div>
                 <div className="left-nav-item">
-                    <NavLink to="/ahu"><FaTasks color='#000'/><p>Tasks List</p></NavLink>
+                    <NavLink to="/tasks"><FaTasks color='#000'/><p>Tasks List</p></NavLink>
                 </div>
                 <div className="left-nav-item">
                     <NavLink to="/settings"><AiOutlineSetting color='#000'/><p>Setting</p></NavLink>
