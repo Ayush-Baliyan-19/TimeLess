@@ -1,109 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../../Context/UserContext";
 import "./TasksToday.scss";
 
-const tasksArray = [
-    {
-    Date: "27/1/2023",
-    Tasks:
-        [
-            {
-                Heading: "Facebook Meeting",
-                Objective: "To make the UI of the meeitng",
-                time: "8.00 PM",
-                tags: [
-                    { tagName: "Important", color: "red" },
-                    { tagName: "Going to attend", color: "Green" },
-                ],
-            },
-            {
-                Heading: "Facebook Meeting",
-                Objective: "To make the UI of the meeitng",
-                time: "8.00 PM",
-                tags: [
-                    { tagName: "Important", color: "red" },
-                    { tagName: "Going to attend", color: "Green" },
-                ],
-            },
-        ]
-    },
-    {
-    Date: "28/01/2023",
-    Tasks:
-        [
-            {
-                Heading: "Facebook Meeting",
-                Objective: "To make the UI of the meeitng",
-                time: "8.00 PM",
-                tags: [
-                    { tagName: "Important", color: "red" },
-                    { tagName: "Going to attend", color: "Green" },
-                ],
-            },
-            {
-                Heading: "Facebook Meeting",
-                Objective: "To make the UI of the meeitng",
-                time: "8.00 PM",
-                tags: [
-                    { tagName: "Important", color: "red" },
-                    { tagName: "Going to attend", color: "Green" },
-                ],
-            },
-        ]
-    },
-    {
-    Date: "28/01/2023",
-    Tasks:
-        [
-            {
-                Heading: "Facebook Meeting",
-                Objective: "To make the UI of the meeitng",
-                time: "8.00 PM",
-                tags: [
-                    { tagName: "Important", color: "red" },
-                    { tagName: "Going to attend", color: "Green" },
-                ],
-            },
-            {
-                Heading: "Facebook Meeting",
-                Objective: "To make the UI of the meeitng",
-                time: "8.00 PM",
-                tags: [
-                    { tagName: "Important", color: "red" },
-                    { tagName: "Going to attend", color: "Green" },
-                ],
-            },
-        ]
-    },
-    {
-    Date: "28/01/2023",
-    Tasks:
-        [
-            {
-                Heading: "Facebook Meeting",
-                Objective: "To make the UI of the meeitng",
-                time: "8.00 PM",
-                tags: [
-                    { tagName: "Important", color: "red" },
-                    { tagName: "Going to attend", color: "Green" },
-                ],
-            },
-            {
-                Heading: "Facebook Meeting",
-                Objective: "To make the UI of the meeitng",
-                time: "8.00 PM",
-                tags: [
-                    { tagName: "Important", color: "red" },
-                    { tagName: "Going to attend", color: "Green" },
-                ],
-            },
-        ]
-    },
-];
 
 var date;
 var time = new Date();
 const TasksToday = () => {
     date = time.getDate() + "/" + time.getMonth() + "/" + time.getFullYear();
+
+    const user= useContext(UserContext)
 
     return (
         <div className="tasksMain">
@@ -112,7 +17,7 @@ const TasksToday = () => {
             </div>
             <div className="uptasklist">
                 <div className="taskslistmain">
-                    {tasksArray.map((dates) => {
+                    {user.user.tasksArray.map((dates) => {
                         return (
                         <>
                             {dates.Date===date ? <h4>Today</h4>: <h4>{dates.Date}</h4> }

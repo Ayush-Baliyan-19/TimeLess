@@ -54,23 +54,23 @@
                 margin-top: -16px;
                 margin-bottom: 10px;
                 h6 {
-                    font-weight: 400;
+                    font-weight: 400 !important;
                     display: inline-block;
-                    font-size: medium;
+                    font-size: medium !important;
                     margin: 0px 5px;
-                    font-size: small;
+                    font-size: small !important;
                     opacity: 0.3;
                 }
             }
         }
         h3 {
             padding: 8px 0px;
-            font-size: medium;
+            font-size: medium !important;
         }
         p{
             opacity: 0.7;
-            font-weight: 400;
-            font-size: 0.9rem;
+            font-weight: 400 !important;
+            font-size: 0.9rem !important;
         }
     }
 
@@ -94,7 +94,7 @@
                 color: black;
                 p{
                     padding-left: 8px;
-                    font-weight: 600;
+                    font-weight: 600 !important;
                     width: max-content;
                     opacity: 0.6;
                 }       

@@ -1,22 +1,29 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import './Rightbar.scss'
+import UserContext from '../../Context/UserContext'
+
 
 const Rightbar = () => {
+  const user= useContext(UserContext);
   return (
     <div className='rightbar-main'>
       <div className="rightbar-con">
           <h3>Calender</h3>
         <div className="rightbar-sec">
-          <p className='rightbar-date'>Oct 20, 2021</p>
-          <RightbarCard/>
-          <RightbarCard/>
-        </div>
-
-        <div className="rightbar-sec">
-          <p className='rightbar-date'>Oct 20, 2021</p>
-          <RightbarCard/>
-          <RightbarCard/>
-          <RightbarCard/>
+          {user.user.tasksArray.map((tasksbig)=>{
+            return (
+              <>
+                <p className='rightbar-date'>{tasksbig.Date}</p>
+                {tasksbig.Tasks.map((task)=>{
+                  return(
+                    <RightbarCard task={task} key={task.TaskID}/>
+                    )
+                  })}
+              </>
+              )
+          })}
+          {/* <RightbarCard/>
+          11111111111 */}
         </div>
       </div>
     </div>
@@ -24,7 +31,8 @@ const Rightbar = () => {
 }
 
 
-const RightbarCard =()=>{
+const RightbarCard =(props)=>{
+  // console.log(props.task.Heading)
   return (
     <div className="rightbar-card">
       <div className="rightbar-card-left">
@@ -32,8 +40,8 @@ const RightbarCard =()=>{
         </div>
           <div className="rightbar-card-right">
             <div className="rightbar-card-line"></div>
-            <p>Dribble Shot</p>
-            <h4>Facebook Brand</h4>
+            <p>{props.task.Heading}</p>
+            <h4>{props.task.Objective.split(" ").length>4 ? `${props.task.Objective.split(" ").slice(0,4)}...`:props.task.Objective}</h4>
         </div>
       </div>
   )

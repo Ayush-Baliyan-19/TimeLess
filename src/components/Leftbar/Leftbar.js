@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 import {FaClock,FaHome,FaTasks} from "react-icons/fa"
 import {AiOutlineSetting,AiTwotoneCalendar} from 'react-icons/ai'
 import Cloud from '../../assets/images/Clouds.png'
-const Leftbar = () => {
+const Leftbar = (props) => {
   return (
     <div className='leftbar-main'>
         <h1 style={{fontSize:"x-large"}}><span style={{color:"#70367c"}}>Time</span><span style={{color:"#fd7f51"}}>less</span></h1>
@@ -16,8 +16,8 @@ const Leftbar = () => {
                 <h6>28h</h6>
                 </div>
             </div>
-            <h3>Sarah Connor</h3>
-            <p>sarahc@gmail.com</p>
+            <h3>{props.name}</h3>
+            <p>{props.email}</p>
         </div>
         <div className="left-navbar">
             <nav>
