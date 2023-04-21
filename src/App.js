@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes,Route} from 'react-router-dom';
+import { Routes,Route,useNavigate} from 'react-router-dom';
 import './App.scss';
 import Calender from './components/Calender/Calender';
 import Home from './components/Home/Home';
@@ -9,17 +9,52 @@ import Modal1 from './components/Modals/Input Task Modal/Modal1';
 import Setting from './components/Settings/Setting';
 import TasksToday from './components/TasksToday/TasksToday';
 import UserContext from './Context/UserContext';
+import Taskpage from './components/TaskPage/Taskpage';
+import Notfound from './components/404/404';
 // import Userstate from './Context/UserState';
 
 
 function App() {
-var use={
-    name:"Ayush",
-    email:"ayushbaliyan05@gmail.com"
-} 
-  const [user,setUser]= React.useState(use)
+  const [user,setUser]= React.useState({})
+  const [isdatafetched,setisDataFetched]= React.useState(false)
+  const navigate=useNavigate();
+  var token;
+  const getDetails= async ()=>{
+    const getUser = await fetch(
+      "http://localhost/auth/user/getdetails",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "authToken":token
+        },
+        body: JSON.stringify({
+          key: "AyushIsAGoodBoy",
+        }),
+      }
+    );
+    const details_response = await getUser.json();
+    if(details_response)
+    {
+      setUser(details_response);
+      setisDataFetched(!isdatafetched)
+    }
+    console.log(details_response.tasksArray);
+  }
+  React.useEffect(()=>{
+    // eslint-disable-next-line
+    token=localStorage.getItem("authKey");
+    if(!token)
+    {
+      navigate('/login');
+    }
+    else{
+      getDetails();
+    }
+    // eslint-disable-next-line
+  },[])
   return (
-    <UserContext.Provider value={{user,setUser}}>
+    <UserContext.Provider value={{user,setUser,isdatafetched}}>
     <div className='app'>
         <Routes>
               <Route path='/login' element={<Login/>} />
@@ -30,8 +65,20 @@ var use={
                   <Route path='/settings' element={<Setting/>} />
                   <Route path='/tasks' element={<TasksToday/>} />
               </Route>
+              <Route path='/user' element={<Layout/>}>
+                {
+                  isdatafetched &&
+                  user.tasksArray.map((date)=>{
+                    return(
+                      <Route path={`/user/${date._id.slice(0,5)}`} element={<Taskpage/>}/>
+                      )
+                    // console.log(`/user/${date._id.slice(0,5)}`)
+                  })
+                }
+              </Route>
+              <Route path="*" element={<Notfound/>}/>
         </Routes>
-    </div>
+    </div> 
       </UserContext.Provider>  
   );
 }

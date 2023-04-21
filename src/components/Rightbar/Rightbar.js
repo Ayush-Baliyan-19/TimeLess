@@ -5,6 +5,7 @@ import UserContext from '../../Context/UserContext'
 
 const Rightbar = () => {
   const user= useContext(UserContext);
+  // console.log(user)
   return (
     <div className='rightbar-main'>
       <div className="rightbar-con">
@@ -13,17 +14,17 @@ const Rightbar = () => {
           {user.user.tasksArray.map((tasksbig)=>{
             return (
               <>
-                <p className='rightbar-date'>{tasksbig.Date}</p>
+                <p className='rightbar-date' key={tasksbig.Date}>{tasksbig.Date}</p>
                 {tasksbig.Tasks.map((task)=>{
+                  // console.log(task.TaskId)
                   return(
-                    <RightbarCard task={task} key={task.TaskID}/>
+                    task &&
+                    <RightbarCard task={task} key={task.TaskId}/>
                     )
                   })}
               </>
               )
           })}
-          {/* <RightbarCard/>
-          11111111111 */}
         </div>
       </div>
     </div>
@@ -32,7 +33,6 @@ const Rightbar = () => {
 
 
 const RightbarCard =(props)=>{
-  // console.log(props.task.Heading)
   return (
     <div className="rightbar-card">
       <div className="rightbar-card-left">

@@ -1,13 +1,12 @@
 import React from 'react'
 import "./Modal1.scss"
-import ColorPicker from "react-color"
 
 const Modal1 = (props) => {
     const [Taskobj, setTaskobj] = React.useState({
-        Date: "27/1/22",
+        Date: "30/1/23",
             task: {
-              Heading: "Facebook Meeting",
-              Objective: "To make the UI of the meeitng",
+              Heading: "TempleHub Meeting",
+              Objective: "To make the UI of the Website",
               Time: "15.00 PM",
               tags: [{
                 tagName: "Ahu ahu",

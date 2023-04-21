@@ -1,7 +1,8 @@
 import React,{useContext} from 'react'
 import './Home.scss'
-import { BsThreeDotsVertical } from 'react-icons/bs'
-import { MdRadioButtonUnchecked } from 'react-icons/md'
+import { BsThreeDotsVertical,BsPencil } from 'react-icons/bs'
+import { MdRadioButtonUnchecked,MdDeleteOutline,MdRadioButtonChecked } from 'react-icons/md'
+import {TiTick} from 'react-icons/ti'
 import UserContext from '../../Context/UserContext'
 import shortid from 'shortid'
 import Modal1 from '../Modals/Input Task Modal/Modal1'
@@ -17,10 +18,10 @@ const Dashboard = () => {
   }
   // eslint-disable-next-line
   const [Taskobj,setTaskObj]=React.useState({
-    Date: "27/1/22",
+    Date: "30/1/23",
         task: {
-          Heading: "Facebook Meeting",
-          Objective: "To make the UI of the meeitng",
+          Heading: "Meeting for TempleHub",
+          Objective: "To make the UI of the Website",
           Time: "15.00 PM",
           tags: [{
             tagName: "Ahu ahu",
@@ -105,8 +106,21 @@ const DashboardCards = (props) => {
             { 
               sidemodal &&
               <>
-                <div className="blurother z-[3] w-[100vw] h-[100vh] fixed top-0 left-0 backdrop-blur-md"></div>
-                <div className={`buttonmodal absolute w-[10%] bg-gray-100 h-[20%] ${sidemodal && "backdropblur"}`}>Hello</div>
+                <div className={`buttonmodal absolute w-max h-max flex-col gap-4 bg-gray-100 flex rounded-md p-4  ${sidemodal && "z-[2]"}`}>
+                  <div className='flex items-center justify-start'>
+                    <BsPencil/>
+                    <p className='font-semibold'>Edit</p>
+                  </div>
+                  <div className='flex items-center justify-start'>
+                    <MdDeleteOutline color='red'/>
+                    <p className='font-semibold'>Delete</p>
+                  </div>
+                  <div className='flex items-center justify-start'>
+                    <TiTick color='green'/>
+                    <p className='font-semibold'>Mark as done</p>
+                  </div>
+                </div>
+                <div className="blurother z-[1] w-[100vw] h-[100vh] fixed top-0 left-0 backdrop-blur-md" onClick={handleSideModal}></div>
               </>
             }
           </div>
@@ -123,11 +137,19 @@ const DashboardCards = (props) => {
 }
 
 const TasksCards = (props) => {
+  const [isClicked,setIsClicked]= React.useState(false)
   // console.log(props)
   return (
     <div className="tasks-card">
       <div className="task-con">
-        <MdRadioButtonUnchecked className='radioo' />
+        <div className="TaskCardRadioButton" onClick={()=>{
+          setIsClicked(!isClicked);
+        }}>
+        {
+          isClicked?<MdRadioButtonChecked className='radioo'/>:
+          <MdRadioButtonUnchecked className='radioo'/>
+        }
+        </div>
         <div className="linee"></div>
         <h5>{props.task.Heading}</h5>
         <p>{props.task.Objective}</p>
