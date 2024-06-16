@@ -2,7 +2,7 @@ import React from 'react'
 import  './Leftbar.scss'
 import {NavLink} from 'react-router-dom'
 import {FaClock,FaHome,FaTasks} from "react-icons/fa"
-import {AiOutlineSetting,AiTwotoneCalendar} from 'react-icons/ai'
+import {AiTwotoneCalendar} from 'react-icons/ai'
 import Cloud from '../../assets/images/Clouds.png'
 const Leftbar = (props) => {
   return (
@@ -29,9 +29,6 @@ const Leftbar = (props) => {
                 </div>
                 <div className="left-nav-item">
                     <NavLink to="/tasks"><FaTasks color='#000'/><p>Tasks List</p></NavLink>
-                </div>
-                <div className="left-nav-item">
-                    <NavLink to="/settings"><AiOutlineSetting color='#000'/><p>Setting</p></NavLink>
                 </div>
             </nav>
         </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Calender.scss";
 import { TiArrowSortedDown } from "react-icons/ti";
 import dayjs from "dayjs";
@@ -8,6 +8,9 @@ var month = today.getMonth();
 var year = today.getFullYear();
 // var count = false;
 const Calender = () => {
+  useEffect(() => {
+    document.title = "Calender";
+  }, []);
   const [shownMonth, setShownMonth] = React.useState(
     dayjs().month(month).format("MMMM")
   );
@@ -152,7 +155,7 @@ const CalDateCard = ({ date, month, year }) => {
   const Navigate=useNavigate()
   var clickedMonth;
   const handleCalenderClick = async () => {
-    const getDetails = await fetch("http://localhost/user/getTasksforDate", {
+    const getDetails = await fetch("https://authking.onrender.com/user/getTasksforDate", {
       method: "POST",
       body: JSON.stringify({ Date: clickedMonth }),
       headers: {
@@ -165,7 +168,7 @@ const CalDateCard = ({ date, month, year }) => {
     console.log(res);
     if(res.Success)
     {
-      const endpoint= res.TasksForDate._id.slice(0,5)
+      const endpoint= res.TasksForDate._id
       console.log(endpoint)
       Navigate(`/user/${endpoint}`)
     }

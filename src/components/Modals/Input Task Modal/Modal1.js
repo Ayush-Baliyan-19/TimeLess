@@ -19,7 +19,7 @@ const Modal1 = (props) => {
 
     const AddTask = async () => {
         const res = await fetch(
-          "http://localhost/user/addTask",
+          "https://authking.onrender.com/user/addTask",
           {
             method: "POST",
             headers: {

@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect} from 'react'
 import './Layout.scss'
 import {Outlet} from 'react-router-dom'
 import Rightbar from '../Rightbar/Rightbar'
@@ -7,6 +7,9 @@ import Loader from '../Loader/Loader'
 import UserContext from '../../Context/UserContext'
 
 const Layout = () => {
+  useEffect(() => {
+    document.title = "Home"
+  }, [])
   const user=useContext(UserContext)
   const {isdatafetched}=user
   return (<>
@@ -14,7 +17,7 @@ const Layout = () => {
           isdatafetched ?
           <div className='layout'>
               <Leftbar name={user.user.name} email={user.user.email}/>
-              <Outlet/>
+                <Outlet/>
               <Rightbar/>
             </div>
             :

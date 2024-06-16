@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import UserContext from "../../Context/UserContext";
 import "./TasksToday.scss";
 
@@ -6,6 +6,9 @@ import "./TasksToday.scss";
 var date;
 var time = new Date();
 const TasksToday = () => {
+    useEffect(() => {
+        document.title = "Tasks";
+    }, []);
     date = time.getDate() + "/" + time.getMonth() + "/" + time.getFullYear();
 
     const user= useContext(UserContext)

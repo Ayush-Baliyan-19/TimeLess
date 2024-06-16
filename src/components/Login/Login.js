@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./Login.scss"
 import { BsGlobe2 } from "react-icons/bs"
@@ -16,6 +16,9 @@ import { validate } from 'react-email-validator'
 
 const Login = () => {
 
+  useEffect(() => {
+    document.title = "Login"
+  }, [])
   const navigate = useNavigate();
   const [isvisible, setisvisible] = React.useState(false)
   const [isemail, setisemail] = React.useState(false)
@@ -36,7 +39,7 @@ const Login = () => {
     e.preventDefault();
     // console.log("Button is pressed")
     const res = await fetch(
-      'http://localhost/auth/login', {
+      'https://authking.onrender.com/auth/login', {
       method: 'POST',
       headers: {
         "Content-type": "application/json",
