@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Calender.scss";
 import { TiArrowSortedDown } from "react-icons/ti";
 import dayjs from "dayjs";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 var today = new Date();
 var month = today.getMonth();
 var year = today.getFullYear();
@@ -152,10 +152,10 @@ const Calender = () => {
 };
 
 const CalDateCard = ({ date, month, year }) => {
-  const Navigate=useNavigate()
+  const Navigate = useNavigate()
   var clickedMonth;
   const handleCalenderClick = async () => {
-    const getDetails = await fetch("https://authking.onrender.com/user/getTasksforDate", {
+    const getDetails = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/getTasksforDate`, {
       method: "POST",
       body: JSON.stringify({ Date: clickedMonth }),
       headers: {
@@ -166,9 +166,8 @@ const CalDateCard = ({ date, month, year }) => {
     });
     const res = await getDetails.json();
     console.log(res);
-    if(res.Success)
-    {
-      const endpoint= res.TasksForDate._id
+    if (res.Success) {
+      const endpoint = res.TasksForDate._id
       console.log(endpoint)
       Navigate(`/user/${endpoint}`)
     }
@@ -181,9 +180,9 @@ const CalDateCard = ({ date, month, year }) => {
         month = month < 10 ? "0" + month : month;
         year = String(year).slice(2, 4);
         clickedMonth = date + "/" + month + "/" + year;
-        setTimeout(()=>{
-            handleCalenderClick();
-        },3000)
+        setTimeout(() => {
+          handleCalenderClick();
+        }, 3000)
       }}
     >
       <div className="datehead">

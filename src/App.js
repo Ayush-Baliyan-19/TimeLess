@@ -11,6 +11,7 @@ import TasksToday from './components/TasksToday/TasksToday';
 import UserContext from './Context/UserContext';
 import Taskpage from './components/TaskPage/Taskpage';
 import Notfound from './components/404/404';
+import Resetpassword from './components/reset/password';
 // import Userstate from './Context/UserState';
 
 
@@ -21,7 +22,7 @@ function App() {
   var token;
   const getDetails = async () => {
     const getUser = await fetch(
-      "https://authking.onrender.com/auth/user/getdetails",
+      `${process.env.REACT_APP_BACKEND_URL}/auth/user/getdetails`,
       {
         method: "POST",
         headers: {
@@ -40,6 +41,9 @@ function App() {
     }
   }
   React.useEffect(() => {
+    if (window.location.pathname.includes("reset/password")) {
+      return
+    }
     // eslint-disable-next-line
     token = localStorage.getItem("authKey");
     if (!token) {
@@ -72,6 +76,7 @@ function App() {
               })
             }
           </Route>
+          <Route path='/reset/password' element={<Resetpassword />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </div>

@@ -13,8 +13,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { TiTick } from "react-icons/ti"
 import { RxCrossCircled } from "react-icons/rx"
 import { validate } from 'react-email-validator'
+import Modal2 from '../Modals/Forgot Password Modal/Modal2'
 
 const Login = () => {
+  const [isForgotModalOpen, setIsForgotModalOpen] = React.useState(false);
 
   useEffect(() => {
     document.title = "Login"
@@ -39,7 +41,7 @@ const Login = () => {
     e.preventDefault();
     // console.log("Button is pressed")
     const res = await fetch(
-      'https://authking.onrender.com/auth/login', {
+      `${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
       method: 'POST',
       headers: {
         "Content-type": "application/json",
@@ -119,7 +121,10 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            <h5 className=' font-semibold text-xs'>Having trouble in sign in ?</h5>
+            <h5 className='font-semibold text-xs' onClick={(e) => { setIsForgotModalOpen(!isForgotModalOpen) }}>Having trouble in sign in ?</h5>
+            {
+              isForgotModalOpen && <Modal2 isOpen={isForgotModalOpen} setIsOpen={setIsForgotModalOpen} />
+            }
             <button type='submit' className='w-100% p-3 px-5 rounded-lg shadow-md bg-pink-400 font-medium text-white text-sm' onClick={gettingtoken}>Sign In</button>
           </form>
           <div className="otherLogins flex flex-col justify-center items-center gap-3">
