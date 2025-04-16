@@ -128,10 +128,9 @@ const Login = () => {
             <button type='submit' className='w-100% p-3 px-5 rounded-lg shadow-md bg-pink-400 font-medium text-white text-sm' onClick={gettingtoken}>Sign In</button>
           </form>
           <div className="otherLogins flex flex-col justify-center items-center gap-3">
-            <h4 className='font-semibold text-sm'>--- Or Sign In With ---</h4>
+            {/* <h4 className='font-semibold text-sm'>--- Or Sign In With ---</h4> */}
             <div className="buttons flex gap-3">
-              <div id="googleDiv">
-                {/* <button className='googleButton py-1 px-3 border border-black flex items-center gap-5 rounded-xl'><BsGoogle />Google</button> */}
+              {/* <div id="googleDiv">
                 <GoogleLogin
                   theme='filled_black'
                   shape='circle'
@@ -145,13 +144,12 @@ const Login = () => {
                   }}
                   useOneTap
                 />
-              </div>
+              </div> */}
               <div id="googleDiv">
-                {/* <button className='googleButton py-1 px-3 border border-black flex items-center gap-5 rounded-xl' onClick={()=>logingoogle()}><BsGoogle/>Google</button> */}
               </div>
             </div>
           </div>
-          <div className="signupdiv text-xs w-[100%] text-center"><p>Don't Have An Account? <a href="/" className='font-semibold'>Request Now</a></p></div>
+          <div className="signupdiv text-xs w-[100%] text-center"><p>Don't Have An Account? <a href="/create/account" className='font-semibold'>Request Now</a></p></div>
         </div>
         <div className="copyright">
           <p className='text-xs text-center'>Copyright @TimeLess 2023 | Privacy Policy</p>

@@ -12,6 +12,7 @@ import UserContext from './Context/UserContext';
 import Taskpage from './components/TaskPage/Taskpage';
 import Notfound from './components/404/404';
 import Resetpassword from './components/reset/password';
+import AccountCreation from './components/Create/Account/Index';
 // import Userstate from './Context/UserState';
 
 
@@ -41,7 +42,7 @@ function App() {
     }
   }
   React.useEffect(() => {
-    if (window.location.pathname.includes("reset/password")) {
+    if (window.location.pathname.includes("reset/password") || window.location.pathname.includes("create/account")) {
       return
     }
     // eslint-disable-next-line
@@ -69,7 +70,7 @@ function App() {
           <Route path='/user' element={<Layout />}>
             {
               isdatafetched &&
-              user.tasksArray.map((date) => {
+              user?.tasksArray?.map((date) => {
                 return (
                   <Route path={`/user/${date._id}`} element={<Taskpage />} />
                 )
@@ -77,6 +78,7 @@ function App() {
             }
           </Route>
           <Route path='/reset/password' element={<Resetpassword />} />
+          <Route path='/create/account' element={<AccountCreation />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </div>
